@@ -32,8 +32,8 @@
   body{font-family:'Montserrat',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased}
   .nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px 28px;background:var(--dusty);color:#fff}
   .nav a{color:#fff;text-decoration:none}
-  .nav .pill{border:1px solid rgba(255,255,255,.7);border-radius:999px;padding:10px 20px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
-  .nav .pill:hover{background:#fff;color:var(--deep)}
+  .nav .pill{background:#fff;color:var(--deep);border:1px solid #fff;border-radius:999px;padding:10px 20px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  .nav .pill:hover{background:var(--paper)}
   .head{background:linear-gradient(180deg,var(--dusty) 0%,#7E90A3 100%);color:#fff;padding:72px 24px 64px;text-align:center}
   .head .eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;opacity:.75;margin-bottom:22px}
   .head h1{font-weight:600;font-size:clamp(30px,5vw,54px);line-height:1.08;max-width:16ch;margin:0 auto 18px;letter-spacing:-.01em}
@@ -48,14 +48,15 @@
   table{width:100%;border-collapse:collapse;font-size:14.5px;line-height:1.5}
   th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--rule)}
   th{color:var(--deep);font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:#EEF2F5}
-  td:first-child{color:var(--deep);font-weight:600;white-space:nowrap}
+  th[scope=row]{color:var(--deep);font-weight:600;white-space:nowrap;background:none;text-transform:none;letter-spacing:0;font-size:14.5px}
+  .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .disclaimer{max-width:680px;margin:0 auto;padding:0 24px 48px;font-size:12.5px;color:#66727D;line-height:1.6}
   .cta{background:var(--deep);color:#fff;text-align:center;padding:64px 24px}
   .cta h2{font-weight:600;font-size:clamp(24px,3.4vw,36px);line-height:1.15;margin:0 auto 12px;max-width:22ch}
   .cta p{max-width:48ch;margin:0 auto 26px;opacity:.9;font-size:15.5px}
   .cta a{display:inline-block;background:#fff;color:var(--deep);border-radius:999px;padding:16px 30px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;text-decoration:none}
   .cta a:hover{opacity:.9}
-  footer{display:flex;justify-content:space-between;align-items:center;padding:24px 28px;font-size:12px;color:rgba(255,255,255,.7);background:var(--deep)}
+  footer{display:flex;justify-content:space-between;align-items:center;padding:24px 28px;font-size:12px;color:rgba(255,255,255,.92);background:var(--deep)}
   footer a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.32);padding-bottom:1px}
   footer .sep{opacity:.5;margin:0 4px}
   @media (max-width:640px){
@@ -77,6 +78,7 @@
   <p class="by">By Natalia Boleyn, founder of Skin Moment · Ten years of hands-on practice</p>
 </header>
 
+<main>
 <article>
 <h2>The question I hear most</h2>
 <p>For ten years, the first thing women asked me, often before they had even sat down, was: "Will they go away?"</p>
@@ -93,19 +95,19 @@
 <div class="tbl"><table>
 <thead>
 <tr>
-<th></th>
-<th>New marks</th>
-<th>Older marks</th>
+<th scope="col"><span class="vh">Aspect</span></th>
+<th scope="col">New marks</th>
+<th scope="col">Older marks</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>How they look</td>
+<th scope="row">How they look</th>
 <td>red, pink, purple; on deeper tones, darker than the skin around them</td>
 <td>pale, silvery, white; on deeper tones, darker or lighter than the skin around them</td>
 </tr>
 <tr>
-<td>What is happening</td>
+<th scope="row">What is happening</th>
 <td>the skin is still remodeling</td>
 <td>the skin has settled</td>
 </tr>
@@ -126,6 +128,7 @@
 <p>Then keep going. The women who got the results they wanted were not the ones with the most expensive products. They were the ones who were regular and consistent. And if you can combine home care with professional work in the studio, the results will be better still.</p>
 </article>
 
+</main>
 <p class="disclaimer">This guide is educational and reflects practitioner experience. It is not medical advice and does not replace guidance from your doctor or a licensed professional. Individual results vary.</p>
 
 <section class="cta">
@@ -138,5 +141,6 @@
   <span>© Skin Moment 2026 <span class="sep">·</span> <a href="/#privacy">Privacy Policy</a></span>
   <span><a href="/">skinmoment.com</a></span>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/sienna-accessibility@2.2.333/dist/sienna.min.js" data-asw-position="bottom-left" data-asw-lang="en" defer></script>
 </body>
 </html>
