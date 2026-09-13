@@ -673,7 +673,19 @@
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sienna-accessibility@2.2.333/dist/sienna.min.js" data-asw-position="bottom-left" data-asw-lang="en" defer></script>
-<style>.asw-menu-btn{--asw-btn-size:46px!important;--asw-icon-size:26px!important;box-shadow:0 8px 24px rgba(31,44,58,.28)!important}</style>
-<script>(function(){function paint(){document.querySelectorAll('.asw-widget,.asw-menu').forEach(function(el){el.style.setProperty('--asw-primary','#586975','important')})}new MutationObserver(paint).observe(document.body,{childList:true});paint()})();</script>
+<style>.asw-widget a.asw-menu-btn{--asw-btn-size:38px!important;--asw-btn-size-mobile:34px!important;--asw-icon-size:22px!important;outline:none!important;border:1.5px solid rgba(255,255,255,.55)!important;box-shadow:0 4px 14px rgba(31,44,58,.18)!important;transition:background-color .25s linear,border-color .2s!important}.asw-widget a.asw-menu-btn:hover,.asw-widget a.asw-menu-btn:focus-visible{border-color:#fff!important}</style>
+<script>(function(){
+  /* Accessibility button: keep the menu in brand color, and tint the round button
+     with the page gradient color at its current scroll position so it blends in. */
+  var stops=[[0,[182,194,206]],[.18,[157,172,188]],[.42,[134,151,169]],[.66,[126,144,163]],[.84,[110,128,147]],[1,[88,105,117]]];
+  function grad(t){t=Math.max(0,Math.min(1,t));for(var i=1;i<stops.length;i++){if(t<=stops[i][0]){var a=stops[i-1],b=stops[i],k=(t-a[0])/(b[0]-a[0]),c=a[1].map(function(v,j){return Math.round(v+(b[1][j]-v)*k)});return 'rgb('+c.join(',')+')'}}return 'rgb(88,105,117)'}
+  function menu(){document.querySelectorAll('.asw-widget,.asw-menu').forEach(function(el){el.style.setProperty('--asw-primary','#586975','important')})}
+  var btn=null,raf=0;
+  function tint(){raf=0;btn=btn||document.querySelector('.asw-menu-btn');if(!btn)return;var h=document.documentElement.scrollHeight,y=window.scrollY+window.innerHeight-20-19;btn.style.setProperty('background-image','none','important');btn.style.setProperty('background-color',grad(y/h),'important')}
+  function onScroll(){if(!raf)raf=requestAnimationFrame(tint)}
+  new MutationObserver(function(){menu();tint()}).observe(document.body,{childList:true});
+  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);
+  menu();tint();
+})();</script>
 </body>
 </html>
