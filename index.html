@@ -238,6 +238,21 @@
     .signature{transform:none}
     footer{flex-direction:column;gap:8px}
   }
+  /* phones: the top bar scrolls away with the hero instead of floating over the content,
+     the founder block gets its side padding back, and section gaps are tightened */
+  @media(max-width:640px){
+    .nav{position:absolute}
+    .hero{min-height:auto;padding-bottom:28px}
+    .float-card{margin-top:22px}
+    .lineup{padding-top:56px}
+    .statement{padding:72px 0 60px}
+    .tones{padding-bottom:12px}
+    .tone-strip{padding-bottom:40px}
+    .founder{padding:44px 20px 24px}
+    .join{padding:72px 0 44px}
+    .wordmark{padding:64px 24px 20px}
+    .lineup .chip{font-size:10px;letter-spacing:.14em;padding-left:14px;padding-right:14px}
+  }
 
   /* prototype animation: entrance, float, parallax */
   @keyframes boxIn{0%{opacity:0;transform:translateY(90px) rotate(-16deg) scale(.88)}
