@@ -238,44 +238,74 @@
     .signature{transform:none}
     footer{flex-direction:column;gap:8px}
   }
-  /* phones: the top bar scrolls away with the hero instead of floating over the content,
-     the founder block gets its side padding back, and section gaps are tightened */
+  /* ---------- phones (<=640px): own type scale and 8px rhythm ----------
+     gutter 20px · sections 56/64px apart · type 44/32/28/22 headings, 15 body, 13 small, 11 labels */
   @media(max-width:640px){
-    .nav{position:absolute}
-    .hero{min-height:auto;padding-bottom:28px}
-    .float-card{margin-top:22px}
-    .lineup{padding-top:56px}
-    .statement{padding:72px 0 60px}
-    .tones{padding-bottom:12px}
-    .tone-strip{padding-bottom:40px}
-    .founder{padding:44px 20px 24px}
-    .join{padding:72px 0 44px}
-    .wordmark{padding:64px 24px 20px}
-    .lineup .chip{letter-spacing:.14em}
-    /* phone type scale: clearer hierarchy between headlines, body and buttons */
-    .hero h1{font-size:46px;line-height:1.0}
-    .hero .sub{font-size:15px;line-height:1.55;margin-top:16px}
-    .hero .cta-row{margin-top:24px;gap:10px}
-    .pill{font-size:11px;padding:12px 22px;letter-spacing:.12em}
-    .nav .pill{padding:8px 14px;font-size:10px}
-    .chip{font-size:10px;padding:6px 12px}
-    .lineup h2{font-size:27px;line-height:1.15}
-    .card{padding:18px}
-    .card .im{height:200px}
+    .canvas{padding:0 20px}
+    .nav{position:absolute;padding:14px 20px}
+    .nav .pill{padding:9px 14px;font-size:10px;letter-spacing:.14em}
+    .pill{font-size:11.5px;letter-spacing:.12em;padding:0 22px;min-height:44px}
+    .chip{font-size:10px;letter-spacing:.14em;padding:6px 12px}
+
+    /* hero */
+    .hero{min-height:auto;padding:88px 0 8px}
+    .hero h1{font-size:44px;line-height:1.02;letter-spacing:-.012em;max-width:280px}
+    .hero .sub{font-size:15px;line-height:1.55;margin-top:14px;max-width:none}
+    .hero .cta-row{margin-top:24px;gap:12px;flex-direction:column;align-items:flex-start}
+    .hero .cta-row .pill{width:100%}
+    .float-card{position:static;width:80%;margin:32px auto 0}
+    .float-card .spin{filter:drop-shadow(0 18px 30px rgba(24,36,50,.34))}
+
+    /* lineup */
+    .lineup{padding:56px 0 8px}
+    .lineup .head{margin-bottom:20px;gap:8px}
+    .lineup h2{font-size:28px;line-height:1.12}
+    .cards{gap:16px}
+    .card{padding:16px;border-radius:22px}
+    .card .im{height:190px;border-radius:14px}
     .card .t{font-size:22px;margin-top:14px}
-    .card .d{font-size:13px}
-    .statement h2{font-size:34px}
-    .statement p{font-size:14.5px}
-    .tones .cap{font-size:13px}
-    .founder h2{font-size:28px}
-    .founder p{font-size:14.5px}
-    .join h2{font-size:34px}
-    .join .perks{font-size:13.5px}
-    .form{margin-top:48px}
-    .form-row input[type="email"]{font-size:15px;padding:12px 18px}
-    .form .segsel{font-size:14px;padding-top:12px;padding-bottom:12px}
-    .form .pill{padding:14px 22px;font-size:12px}
-    .consent-row{font-size:11px}
+    .card .d{font-size:13.5px;margin-top:4px}
+    .card .chip{margin-top:12px}
+
+    /* statement */
+    .statement{padding:64px 0 56px}
+    .statement h2{font-size:32px;line-height:1.08;max-width:13ch;margin:0 auto}
+    .statement p{font-size:15px;line-height:1.55;margin-top:12px}
+    .statement .pill{margin-top:24px}
+
+    /* tones */
+    .tones{padding-bottom:8px}
+    .tone-strip{gap:12px;padding:0 20px 24px 20px;scroll-padding-left:20px}
+    .tcard{height:62vw;border-radius:18px}
+    .tone-nav{margin-top:0;padding-left:20px;padding-right:20px;gap:8px}
+    .tarr{width:44px;height:44px}
+    .tones .cap{font-size:13px;line-height:1.5;margin-top:8px}
+
+    /* founder */
+    .founder{padding:56px 20px 8px;gap:20px}
+    .founder h2{font-size:28px;line-height:1.15;max-width:14ch}
+    .founder p{font-size:15px;line-height:1.55;margin-top:12px}
+    .sigrow{margin-top:16px;gap:16px}
+    .signature .nm{width:104px}
+
+    /* join */
+    .join{padding:64px 0 40px}
+    .join h2{font-size:32px;line-height:1.08;max-width:16ch;margin:0 auto}
+    .join .perks{font-size:14px;line-height:1.5;margin-top:10px}
+    .form{margin-top:32px}
+    .form-row{padding:8px}
+    .form-row input[type="email"]{font-size:15px;padding:13px 16px}
+    .form .segsel{font-size:14px;padding-top:13px;padding-bottom:13px;padding-left:16px}
+    .form .pill{padding:0 22px;font-size:12px;min-height:48px}
+    .consent-row{font-size:11.5px;margin-top:16px;padding:0 4px}
+
+    /* footer */
+    .wordmark{padding:56px 20px 16px}
+    .wordmark .wm img{width:150px!important}
+    .wordmark .tag{margin-top:12px;margin-bottom:20px}
+    .footnote{padding:0 20px 12px}
+    .footnote p{font-size:10.5px}
+    footer{padding:16px 20px 28px;gap:10px}
   }
 
   /* prototype animation: entrance, float, parallax */
