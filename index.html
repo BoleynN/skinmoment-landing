@@ -24,6 +24,7 @@
  {"@type":"WebPage","@id":"https://skinmoment.com/#webpage","url":"https://skinmoment.com/","name":"Skin Moment | Stretch mark skincare for every skin tone","isPartOf":{"@id":"https://skinmoment.com/#website"},"about":{"@id":"https://skinmoment.com/#org"},"description":"Stretch mark skincare built by a practitioner: ten years of hands-on work with every single skin tone. Launching soon. Join the list and get the free guide.","primaryImageOfPage":"https://skinmoment.com/images/hero-box.png","inLanguage":"en"}
 ]}
 </script>
+<link rel="preload" as="image" href="/images/hero-box.png" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -245,6 +246,7 @@
                    100%{opacity:1;transform:translateY(0) rotate(0deg) scale(1)}}
   @keyframes boxFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(1.6deg)}}
   .float-card img.box{animation:boxIn 1.5s cubic-bezier(.2,.75,.25,1) .35s backwards, boxFloat 6.5s ease-in-out 1.85s infinite}
+  @media(prefers-reduced-motion:reduce){.float-card img.box,.hero .canvas>h1,.hero .canvas>.sub,.hero .canvas>.cta-row{animation:none!important}}
   @keyframes riseIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
   .hero .canvas>h1{animation:riseIn .9s cubic-bezier(.22,.7,.3,1) .05s backwards}
   .hero .canvas>.sub{animation:riseIn .9s cubic-bezier(.22,.7,.3,1) .3s backwards}
@@ -274,6 +276,7 @@
 </nav>
 
 <!-- HERO -->
+<main>
 <header class="hero">
   <div class="canvas" style="position:relative">
     <h1 id="positionTitle">Built from practice. Made for real bodies.</h1>
@@ -283,7 +286,7 @@
       <span class="chip">Free guide when you join</span>
     </div>
     <aside class="float-card">
-      <div class="spin"><img class="box" src="/images/hero-box.png" alt="Skin Moment ritual kit box"></div>
+      <div class="spin"><img class="box" src="/images/hero-box.png" alt="Skin Moment ritual kit box" fetchpriority="high" decoding="async"></div>
       <div style="margin-top:14px"><span class="chip">coming soon</span></div>
     </aside>
   </div>
@@ -386,6 +389,7 @@
     <p class="formmsg" id="waitMsg" role="status" aria-live="polite"></p>
   </div>
 </section>
+</main>
 
 <!-- WORDMARK + FOOTER -->
 <section class="wordmark">
@@ -395,8 +399,8 @@
 <div class="footnote"><p>*Photos show results from our studio treatment at Boleyn Studio. Individual results vary. Skin Moment products are cosmetics. The photos do not show product results.</p>
 </div>
 <footer class="canvas">
-  <span>© Skin Moment 2026 <span class="sep">·</span> <a href="/privacy" data-privacy>Privacy Policy</a> <span class="sep">·</span> <a class="legal" href="/guide/do-stretch-marks-ever-go-away/">Do stretch marks ever go away?</a></span>
-  <span class="social"><a href="https://instagram.com/skin_moment" target="_blank" rel="noopener noreferrer" aria-label="Skin Moment on Instagram"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/><circle cx="12" cy="12" r="4.3"/><circle class="dot" cx="17.3" cy="6.7" r="1.15"/></svg><span>@skin_moment</span></a></span>
+  <span>© Skin Moment 2026 <span class="sep">·</span> <a href="/privacy" data-privacy>Privacy Policy</a> <span class="sep">·</span> <a class="legal" href="/guide/do-stretch-marks-ever-go-away/">Guide</a></span>
+  <span class="social"><a href="https://instagram.com/skin_moment" target="_blank" rel="noopener noreferrer" aria-label="@skin_moment, Skin Moment on Instagram"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/><circle cx="12" cy="12" r="4.3"/><circle class="dot" cx="17.3" cy="6.7" r="1.15"/></svg><span>@skin_moment</span></a></span>
 </footer>
 
 
@@ -668,5 +672,6 @@
   });
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sienna-accessibility@2.2.333/dist/sienna.min.js" data-asw-position="bottom-left" data-asw-lang="en" defer></script>
 </body>
 </html>
