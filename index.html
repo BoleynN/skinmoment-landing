@@ -242,24 +242,27 @@
      gutter 20px · sections 56/64px apart · type 44/32/28/22 headings, 15 body, 13 small, 11 labels */
   @media(max-width:640px){
     .canvas{padding:0 20px}
-    .nav{position:absolute;padding:14px 20px}
+    .nav{position:absolute;padding:18px 20px}
+    .nav .logo img{height:14px!important}
     .nav .pill{padding:9px 14px;font-size:10px;letter-spacing:.14em}
     .pill{font-size:11.5px;letter-spacing:.12em;padding:0 22px;min-height:44px}
     .chip{font-size:10px;letter-spacing:.14em;padding:6px 12px}
 
     /* hero */
-    .hero{min-height:auto;padding:88px 0 8px}
+    .hero{min-height:auto;padding:124px 0 8px}
     .hero h1{font-size:44px;line-height:1.02;letter-spacing:-.012em;max-width:280px}
     .hero .sub{font-size:15px;line-height:1.55;margin-top:14px;max-width:none}
-    .hero .cta-row{margin-top:24px;gap:12px;flex-direction:column;align-items:flex-start}
-    .hero .cta-row .pill{width:100%}
-    .float-card{position:static;width:80%;margin:32px auto 0}
+    .hero .cta-row{margin-top:28px;gap:14px;flex-direction:column;align-items:flex-start!important}
+    .hero .cta-row .pill{width:auto;padding:0 28px}
+    .hero .cta-row .chip{border:0;padding:0 2px;font-size:10.5px;letter-spacing:.18em;color:rgba(255,255,255,.85)}
+    .float-card{position:static;width:74%;margin:56px auto 0}
     .float-card .spin{filter:drop-shadow(0 18px 30px rgba(24,36,50,.34))}
 
     /* lineup */
     .lineup{padding:56px 0 8px}
-    .lineup .head{margin-bottom:20px;gap:8px}
-    .lineup h2{font-size:28px;line-height:1.12}
+    .lineup .head{margin-bottom:20px;gap:10px}
+    .lineup .head .chip{font-size:9.5px;letter-spacing:.12em;padding:5px 11px;opacity:.85}
+    .lineup h2{font-size:32px;line-height:1.1}
     .cards{gap:16px}
     .card{padding:16px;border-radius:22px}
     .card .im{height:190px;border-radius:14px}
@@ -285,14 +288,16 @@
     .founder{padding:56px 20px 8px;gap:20px}
     .founder h2{font-size:28px;line-height:1.15;max-width:14ch}
     .founder p{font-size:15px;line-height:1.55;margin-top:12px}
-    .sigrow{margin-top:16px;gap:16px}
-    .signature .nm{width:104px}
+    .canvas.founder .sigrow{margin-top:20px;gap:14px;flex-direction:column-reverse;align-items:flex-start;justify-content:flex-start}
+    .canvas.founder .signature{transform:none}
+    .canvas.founder .signature .nm{width:104px}
+    .canvas.founder .sigrow .chip{transform:none;opacity:.85}
 
     /* join */
     .join{padding:64px 0 40px}
-    .join h2{font-size:32px;line-height:1.08;max-width:16ch;margin:0 auto}
-    .join .perks{font-size:14px;line-height:1.5;margin-top:10px}
-    .form{margin-top:32px}
+    .join h2{font-size:28px;line-height:1.1;max-width:16ch;margin:0 auto}
+    .join .perks{font-size:13.5px;line-height:1.5;margin-top:10px;max-width:30ch;margin-left:auto;margin-right:auto}
+    .form{margin-top:28px}
     .form-row{padding:8px}
     .form-row input[type="email"]{font-size:15px;padding:13px 16px}
     .form .segsel{font-size:14px;padding-top:13px;padding-bottom:13px;padding-left:16px}
