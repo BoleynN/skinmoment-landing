@@ -164,6 +164,25 @@
   .consent-row input:checked{background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path d='M2.5 6.2l2.3 2.3 4.7-4.9' fill='none' stroke='%23586975' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>") center/10px no-repeat;border-color:#fff}
   .consent-row input:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
+
+  /* ============ CONFIRM POPUP (mobile) ============ */
+  .cmodal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;
+    background:rgba(31,40,48,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .2s ease}
+  .cmodal[hidden]{display:none}
+  .cmodal.open{opacity:1}
+  .cmodal-card{width:100%;max-width:340px;background:#fff;color:var(--deep);border-radius:20px;padding:30px 24px 22px;text-align:center;
+    box-shadow:0 30px 80px rgba(20,28,36,.35);transform:translateY(10px);transition:transform .2s ease}
+  .cmodal.open .cmodal-card{transform:none}
+  .cmodal-card h3{font-size:20px;line-height:1.2;font-weight:700;letter-spacing:-.01em;margin:0}
+  .cmodal-card .cm-mail{font-size:13px;font-weight:600;margin-top:8px;word-break:break-all;opacity:.85}
+  .cmodal-card .cm-text{font-size:13px;line-height:1.5;margin-top:16px;opacity:.8}
+  .cmodal-card .cm-yes{display:flex;width:100%;justify-content:center;align-items:center;margin-top:24px;min-height:46px;border:0;border-radius:999px;
+    background:var(--deep);color:#fff;font:inherit;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+  .cmodal-card .cm-no{display:block;width:100%;margin-top:6px;min-height:44px;border:0;background:none;color:var(--deep);font:inherit;
+    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.65;cursor:pointer}
+  .cmodal-card button:focus-visible{outline:2px solid var(--deep);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){.cmodal,.cmodal-card{transition:none}}
+
   /* ============ WORDMARK / FOOTER on deep zone ============ */
   .wordmark{padding:120px 24px 30px;text-align:center;color:#fff}
   .wordmark{padding:90px 24px 24px}
@@ -314,6 +333,7 @@
     .form.err .form-row{box-shadow:none}
     .form.err .form-row input[type="email"]{border-bottom-color:#FFE0D8}
     .consent-row{font-size:10px;margin-top:22px;padding:0;justify-content:flex-start}
+    .consent-row{display:none}
     .join .formmsg{text-align:left}
 
     /* footer */
@@ -475,6 +495,15 @@
       </label>
     </form>
     <p class="formmsg" id="waitMsg" role="status" aria-live="polite"></p>
+    <div class="cmodal" id="waitConfirm" role="dialog" aria-modal="true" aria-labelledby="cmTitle" hidden>
+      <div class="cmodal-card">
+        <h3 id="cmTitle">Email me the guide</h3>
+        <p class="cm-mail" id="cmMail"></p>
+        <p class="cm-text">I want Skin Moment to email me the guide, product-development updates and launch offers.</p>
+        <button type="button" class="cm-yes" id="cmYes">Yes, send it</button>
+        <button type="button" class="cm-no" id="cmNo">Cancel</button>
+      </div>
+    </div>
   </div>
 </section>
 </main>
@@ -690,6 +719,35 @@
     btn.disabled = false; btn.textContent = label; f.classList.remove('busy');
   }
 
+  var cm = document.getElementById('waitConfirm'),
+      cmYes = document.getElementById('cmYes'),
+      cmNo = document.getElementById('cmNo'),
+      cmMail = document.getElementById('cmMail');
+  function isMobile(){ return !!(cm && window.matchMedia && window.matchMedia('(max-width:640px)').matches); }
+  function closeConfirm(){
+    if(!cm) return;
+    cm.classList.remove('open');
+    setTimeout(function(){ cm.hidden = true; }, 200);
+    document.removeEventListener('keydown', onKey);
+  }
+  function onKey(e){ if(e.key === 'Escape'){ closeConfirm(); btn.focus(); } }
+  function openConfirm(email){
+    cmMail.textContent = email;
+    cm.hidden = false;
+    requestAnimationFrame(function(){ cm.classList.add('open'); });
+    document.addEventListener('keydown', onKey);
+    cmYes.focus();
+  }
+  if(cm){
+    cmYes.addEventListener('click', function(){
+      if(consent) consent.checked = true;
+      closeConfirm();
+      if(f.requestSubmit) f.requestSubmit(); else f.dispatchEvent(new Event('submit', {cancelable:true}));
+    });
+    cmNo.addEventListener('click', function(){ closeConfirm(); btn.focus(); });
+    cm.addEventListener('click', function(e){ if(e.target === cm){ closeConfirm(); } });
+  }
+
   f.addEventListener('submit', function(e){
     e.preventDefault();
     if(f.company && f.company.value) return;
@@ -703,6 +761,9 @@
       say('Pick the one that sounds like you first.', true);
       if(sel) sel.focus();
       return;
+    }
+    if(isMobile() && !(consent && consent.checked)){
+      openConfirm(email); return;
     }
     if(!consent || !consent.checked){
       say('Check the consent box so we can email the guide.', true);
