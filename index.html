@@ -201,6 +201,17 @@
   footer .social{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center}
   footer .social a{display:inline-flex;align-items:center;gap:6px}
   footer .social .sep{opacity:.5}
+  footer .fmenu{display:inline-block;position:relative;vertical-align:baseline}
+  footer .fmenu summary{list-style:none;cursor:pointer;color:#fff;text-decoration:underline;text-underline-offset:2px}
+  footer .fmenu summary::-webkit-details-marker{display:none}
+  footer .fmenu summary::after{content:"\25BE";display:inline-block;margin-left:5px;font-size:10px;text-decoration:none;opacity:.85;transition:transform .18s ease}
+  footer .fmenu[open] summary::after{transform:rotate(180deg)}
+  footer .fmenu summary:hover{opacity:.75}
+  footer .fmenu-list{position:absolute;left:0;bottom:calc(100% + 12px);min-width:300px;background:#fff;border-radius:16px;padding:8px 0;
+    box-shadow:0 14px 34px rgba(24,36,50,.28);z-index:40;text-align:left}
+  footer .fmenu-list a{display:block;padding:10px 18px;color:var(--deep);font-size:12.5px;font-weight:500;line-height:1.35;white-space:nowrap;text-decoration:none}
+  footer .fmenu-list a:hover{background:#EEF2F5;opacity:1}
+  @media (max-width:640px){footer .fmenu-list{left:auto;right:0;min-width:250px;max-width:calc(100vw - 40px)}footer .fmenu-list a{white-space:normal}}
   footer svg.ig{width:14px;height:14px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
   footer svg.ig .dot{fill:currentColor;stroke:none}
   footer a.legal{color:rgba(255,255,255,.82);border-bottom:1px solid rgba(255,255,255,.32);padding-bottom:1px}
@@ -523,7 +534,7 @@
 <div class="footnote"><p>*Photos show results from our studio treatment at Boleyn Studio. Individual results vary. Skin Moment products are cosmetics. The photos do not show product results.</p>
 </div>
 <footer class="canvas">
-  <span>© Skin Moment 2026 <span class="sep">·</span> <a href="/#privacy" data-privacy>Privacy Policy</a> <span class="sep">·</span> <a class="legal" href="/guide/do-stretch-marks-ever-go-away/">Read</a></span>
+  <span>© Skin Moment 2026 <span class="sep">·</span> <a href="/#privacy" data-privacy>Privacy Policy</a> <span class="sep">·</span> <details class="fmenu"><summary>Read</summary><div class="fmenu-list"><a href="/guide/do-stretch-marks-ever-go-away/">Do stretch marks ever go away?</a><a href="/guide/how-to-support-your-skin-during-pregnancy/">How to support your skin during pregnancy</a></div></details></span>
   <span class="social"><a href="https://instagram.com/skin_moment" target="_blank" rel="noopener noreferrer" aria-label="@skin_moment, Skin Moment on Instagram"><svg class="ig" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/><circle cx="12" cy="12" r="4.3"/><circle class="dot" cx="17.3" cy="6.7" r="1.15"/></svg><span>@skin_moment</span></a></span>
 </footer>
 
@@ -843,5 +854,6 @@
   window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);
   menu();tint();
 })();</script>
+<script>(function(){var m=document.querySelector("footer .fmenu");if(!m)return;document.addEventListener("click",function(e){if(m.open&&!m.contains(e.target))m.open=false});document.addEventListener("keydown",function(e){if(e.key==="Escape")m.open=false});})();</script>
 </body>
 </html>
